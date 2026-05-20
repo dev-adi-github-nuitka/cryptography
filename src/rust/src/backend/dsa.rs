@@ -270,7 +270,7 @@ fn check_dsa_parameters(
     py: pyo3::Python<'_>,
     parameters: &DsaParameterNumbers,
 ) -> CryptographyResult<()> {
-    if ![1024, 2048, 3072, 4096].contains(
+    if ![512, 640, 1024, 2048, 3072, 4096].contains(
         &parameters
             .p
             .bind(py)
@@ -279,7 +279,7 @@ fn check_dsa_parameters(
     ) {
         return Err(CryptographyError::from(
             pyo3::exceptions::PyValueError::new_err(
-                "p must be exactly 1024, 2048, 3072, or 4096 bits long",
+                "p must be exactly 512, 640, 1024, 2048, 3072, or 4096 bits long",
             ),
         ));
     }
